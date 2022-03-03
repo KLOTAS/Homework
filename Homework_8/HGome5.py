@@ -1,14 +1,13 @@
-print("part 6")
+import locale
+import chardet
 
 print(locale.getpreferredencoding())
 
-file = open("test_file.txt", "w")
-file.write("сетевое программирование\n")
-file.write("сокет\n")
-file.write("декоратор\n")
-print(file.encoding)
-file.close()
+# cp1251
 
-with open("test_file.txt", encoding='utf-8') as file:
-    for line in file:
-        print(line, end='')
+with open('test_file.txt', 'rb') as fl:
+    s = fl.read()
+    print(s)
+    print(chardet.detect(s))
+    with open('test_file.txt', encoding='utf-8', errors='replace') as fl:
+        print(fl.read())

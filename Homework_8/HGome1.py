@@ -1,9 +1,6 @@
-print("part 2")
-word1 = b"class"
-word2 = b"function"
-word3 = b"method"
+import binascii
 
-print(type(word1), type(word2), type(word3))
-print(word1, word2, word3)
-print(len(word1), len(word2), len(word3))
-print('\n')
+strs = [b'class', b'function', b'method']
+
+for s in strs:
+    print(type(s), binascii.hexlify(s), len(s))

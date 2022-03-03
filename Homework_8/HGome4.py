@@ -1,11 +1,15 @@
-print("part 5")
-args1 = ['ping', 'yandex.ru', '-c', '4']
-args2 = ['ping', 'youtube.com', '-c', '4']
+import subprocess
 
-subproc_ping = subprocess.Popen(args1, stdout=subprocess.PIPE)
-for line in subproc_ping.stdout:
-    print(line.decode('utf-8'), end='')
+ping_results = ''
 
-subproc_ping = subprocess.Popen(args2, stdout=subprocess.PIPE)
+args = ['ping', 'yandex.ru']
+subproc_ping = subprocess.Popen(args, stdout=subprocess.PIPE)
 for line in subproc_ping.stdout:
-    print(line.decode('utf-8'), end='')
+    ping_results += line.decode('cp866')
+
+args = ['ping', 'youtube.com']
+subproc_ping = subprocess.Popen(args, stdout=subprocess.PIPE)
+for line in subproc_ping.stdout:
+    ping_results += line.decode('cp866')
+
+print(ping_results.encode('utf-8').decode('utf-8'))
